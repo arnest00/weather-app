@@ -1,0 +1,3 @@
+Look up the weather in your departure city and arrival city, with ability to toggle between using metric or imperial scales. App suggests whether or not you should bring a jacket, but you know yourself better than this collection of code does.
+
+Built with [OpenWeatherMap API](https://openweathermap.org/), with thanks to [Javier Lopez-Villalta](https://codepen.io/jlalovi/full/bIyAr) for the color scheme.

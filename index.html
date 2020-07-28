@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
+  <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Dress right on travel day</title>
+</head>
+<body>
+  <div id="app-container">
+    <span id="header">Should You Bring a Jacket?</span>
+
+    <div id="form-container">
+      <div class="city-select">
+        <div class="input-container"></div>
+      </div>
+      <div class="city-select">
+        <div class="input-container"></div>
+      </div>
+    </div>
+
+    <div id="forecast-container">
+      <div class="forecast visibility-hidden">
+        <span class="forecast-desc"></span>
+        <span class="forecast-temp">
+          <span class="forecast-temp-num"></span><span class="forecast-temp-sym">&deg;</span><span class="forecast-temp-scale">F</span>
+        </span>
+        <span class="forecast-icon-container"></span>
+        <span class="forecast-humidity"></span>
+        <span class="forecast-wind-spd"></span>
+      </div>
+      <div class="forecast visibility-hidden">
+        <span class="forecast-desc"></span>
+        <span class="forecast-temp">
+          <span class="forecast-temp-num"></span><span class="forecast-temp-sym">&deg;</span><span class="forecast-temp-scale">F</span>
+        </span>
+        <span class="forecast-icon-container"></span>
+        <span class="forecast-humidity"></span>
+        <span class="forecast-wind-spd"></span>
+      </div>
+    </div>
+
+    <footer>
+      <span id="feedback"></span>
+      <div id="scale-toggle-container">
+        <div class="scale-container">
+          <span id="metric-scale">C</span>
+        </div>
+        <div class="scale-container selected-scale">
+          <span id="imperial-scale">F</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/city.list.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+</html>

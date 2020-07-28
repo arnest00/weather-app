@@ -1,0 +1,184 @@
+:root {
+  --font-color: #fff;
+  --bg-color: #1f253d;
+  --primary-color: #394264;
+  --secondary-color: #50597b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  font-size: 16px;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+footer {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+::placeholder {
+  color: #9099b7;
+}
+
+.city-select {
+  width: 45%;
+}
+
+.input-container {
+  border: 1px solid #1f253d;
+  background-color: var(--secondary-color);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  transition: 250ms;
+}
+
+.input-container input {
+  border: none;
+  outline: none;
+  background: inherit;
+  color: var(--font-color);
+}
+
+.input-container:focus-within {
+  border: 1px solid #11a8ab;
+}
+
+.display-none {
+  display: none;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.dropdown-container {
+  max-height: 9rem;
+  width: 37%;
+  overflow-y: scroll;
+  border-radius: 0.25rem;
+  background-color: var(--bg-color);
+  position: absolute;
+}
+
+.dropdown-container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.dropdown-item {
+  padding: 0.25rem;
+  cursor: pointer;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.forecast {
+  width: 45%;
+  height: auto;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 150ms ease-in 500ms;
+}
+
+.forecast-temp {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+}
+
+.forecast-temp-num,
+.forecast-temp-sym {
+  font-size: 3rem;
+}
+
+.forecast-temp-scale {
+  font-size: 2rem;
+  align-self: center;
+}
+
+.forecast-icon-container {
+  font-size: 3rem;
+  margin: 0 auto;
+}
+
+.forecast-humidity {
+  padding-top: 1rem;
+}
+
+.scale-container {
+  height: 1.5rem;
+  width: 1.5rem;
+  text-align: center;
+  line-height: 1.5rem;
+  border-radius: 100%;
+  margin: 0 1rem;
+}
+
+.selected-scale {
+  background-color: #e64c65;
+}
+
+#app-container {
+  width: 100vh;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#header {
+  display: block;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--font-color);
+  text-align: center;
+  letter-spacing: 0.1rem;
+  transform: skewX(-10deg);
+}
+
+#form-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+
+#forecast-container {
+  height: 250px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+#feedback {
+  line-height: 1.5rem;
+}
+
+#scale-toggle-container {
+  display: flex;
+}
+
+#metric-scale,
+#imperial-scale {
+  font-weight: 700;
+}
+
+#metric-scale:hover,
+#imperial-scale:hover {
+  cursor: pointer;
+}

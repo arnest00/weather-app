@@ -1,0 +1,25 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Look up the weather in your departure city and arrival city, with ability to toggle between using metric or imperial scales. App suggests whether or not you should bring a jacket, but you know yourself better than this collection of code does.",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnest00/weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arnest00/weather-app/issues"
+  },
+  "homepage": "https://github.com/arnest00/weather-app#readme"
+}

@@ -17,9 +17,6 @@ window.onload = () => {
   cityInputs = document.querySelectorAll('.city-input');
 }
 
-// ====== Variable declaration
-const API_KEY = keys[0].API_KEY;  // keys located in '/assets/js/config.js'
-
 // ====== Autocomplete functionality
 const createAutoComplete = ({root, arrayRef, type}) => {
   const typeCap = type.charAt(0).toUpperCase() + type.slice(1);
@@ -164,12 +161,6 @@ const getFeedback = (mainStr) => {
       return 'Nah, you\'re good.';
   }
 }
-
-// Unused function to convert Unix time to UTC
-// const unixToUTC = (timestamp, timezone) => {
-//   const date = new Date(timestamp * 1000).toLocaleString('en-US', {timeZone: timezone});
-//   return date;
-// }
 
 // ====== Autocomplete creation
 createAutoComplete({

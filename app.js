@@ -1,19 +1,22 @@
 require('dotenv').config();
 
-const express = require('express');
+const express = require('express'),
+      { getForecast } = require('./forecast');
 
 const app = express();
 
-const API_KEY = process.env.API_KEY;
+// ============ Set up .env variables
 const PORT = process.env.PORT || 3000;
 
+// ============ EJS
 app.set('view engine', 'ejs');
+
+// ============ Other middleware
 app.use(express.static('public'));
 
+// ============ App route
 app.get('/', (req, res) => {
-  res.render('index.ejs', {
-    API_KEY
-  });
+  res.render('index.ejs', { });
 });
 
 app.listen(PORT, () => {

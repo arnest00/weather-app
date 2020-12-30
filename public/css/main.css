@@ -18,12 +18,6 @@ body {
   color: var(--font-color);
 }
 
-footer {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-
 ::placeholder {
   color: #9099b7;
 }
@@ -165,6 +159,12 @@ footer {
   margin-bottom: 1.5rem;
 }
 
+#scales-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 #feedback {
   line-height: 1.5rem;
 }
@@ -173,12 +173,11 @@ footer {
   display: flex;
 }
 
+.scale-container:hover {
+  cursor: pointer;
+}
+
 #metric-scale,
 #imperial-scale {
   font-weight: 700;
-}
-
-#metric-scale:hover,
-#imperial-scale:hover {
-  cursor: pointer;
 }

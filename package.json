@@ -1,26 +1,38 @@
 {
   "name": "weather-app",
-  "version": "1.0.0",
-  "description": "Look up the weather in your departure city and arrival city, with ability to toggle between using metric or imperial scales. App suggests whether or not you should bring a jacket, but you know yourself better than this collection of code does.",
-  "main": "app.js",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
   },
-  "devDependencies": {},
   "scripts": {
-    "dev": "nodemon app.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/arnest00/weather-app.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/arnest00/weather-app/issues"
-  },
-  "homepage": "https://github.com/arnest00/weather-app#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

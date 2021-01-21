@@ -1,8 +1,13 @@
 import React from 'react';
 
 function ForecastResult(props) {
+  let classes = 'result visibility-hidden';
+  if (props.forecast.city) {
+    classes = `result`;
+  };
+
   return (
-    <div className='result'>
+    <div className={classes}>
       <span className='result-desc'></span>
       <span className='result-temp'>
         <span className='result-temp-num'></span>

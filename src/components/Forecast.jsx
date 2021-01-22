@@ -2,39 +2,31 @@ import React, { useState, useEffect } from 'react';
 import ForecastInput from './ForecastInput';
 import ForecastResult from './ForecastResult';
 import useDebounce from './useDebounce';
+import { getForecast } from '../utils/getForecast';
 
 function Forecast(props) {
-  const [ city, setCity ] = useState('');
-  const [ forecast, setForecast ] = useState({});
+  const [ departureCity, setDepartureCity ] = useState('');
+  const [ arrivalCity, setArrivalCity ] = useState('');
+  const [ departureForecast, setDepartureForecast ] = useState({});
+  const [ arrivalForecast, setArrivalForecast ] = useState({});
 
-  const debouncedCity = useDebounce(city);
+  const debouncedDeparture = useDebounce(departureCity);
+  const debouncedArrival = useDebounce(arrivalCity);
 
   useEffect(() => {
-    if (debouncedCity) {
-      getForecast(debouncedCity);
+    if (debouncedDeparture || debouncedArrival) {
+      if (debouncedDeparture && !departureForecast.city) getForecast(debouncedDeparture, setDepartureForecast);
+      if (debouncedArrival && !arrivalForecast.city) getForecast(debouncedArrival, setArrivalForecast);
     } else {
-      setCity('');
+      setDepartureCity('');
+      setArrivalCity('');
     };
-  }, [ debouncedCity ]);
+  }, [ debouncedDeparture, debouncedArrival ]);
 
-  async function getForecast(q) {
-    try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=${process.env.REACT_APP_API_KEY}&units=imperial&q=${q}`);
-      const data = await response.json();
-      const newForecast = { 
-        ...forecast, 
-        city: data.name,
-        desc: data.weather[0].description,
-        temp: data.main.temp,
-        icon: data.weather[0].icon,
-        humidity: data.main.humidity,
-        windSpeed: data.wind.speed
-      };
-      setForecast(newForecast);
-      console.log(forecast);
-    } catch (error) {
-      console.error(error);;
-    };
+  function handleFocus(e, citySetter, forecastSetter) {
+    e.target.value = '';
+    citySetter('');
+    forecastSetter({});
   };
 
   return (
@@ -42,22 +34,22 @@ function Forecast(props) {
       <div id='inputs-container'>
         <ForecastInput 
           name='departure'
-          onChange={e => setCity(e.target.value)}
+          onChange={e => setDepartureCity(e.target.value)}
+          onFocus={e => handleFocus(e, setDepartureCity, setDepartureForecast)}
         />
-
-        {/* <ForecastInput 
+        <ForecastInput 
           name='arrival'
-          onChange={e => console.log(e.target.value)}
-        /> */}
+          onChange={e => setArrivalCity(e.target.value)}
+          onFocus={e => handleFocus(e, setArrivalCity, setArrivalForecast)}
+        />
       </div>
-
       <div id='results-container'>
         <ForecastResult 
-          forecast={forecast}
+          forecast={departureForecast}
         />
-
-        {/* <ForecastResult 
-        /> */}
+        <ForecastResult 
+          forecast={arrivalForecast}
+        />
       </div>
     </React.Fragment>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ForecastInput({ name, onChange }) {
+function ForecastInput({ name, onChange, onFocus }) {
   const uppercaseName = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
@@ -13,6 +13,7 @@ function ForecastInput({ name, onChange }) {
           name={name} 
           placeholder={ `${uppercaseName} city` } 
           onChange={onChange}
+          onFocus={onFocus}
         />
       </div>
     </div>

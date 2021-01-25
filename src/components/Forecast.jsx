@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import ForecastInput from './ForecastInput';
+import ForecastForm from './ForecastForm';
 import ForecastResult from './ForecastResult';
-import useDebounce from './useDebounce';
-import { getForecast } from '../utils/getForecast';
+// import useDebounce from './useDebounce';
+// import { getForecast } from '../utils/getForecast';
+import { getForecastTest } from '../utils/getForecastTest';
 
 function Forecast(props) {
   const [ departureCity, setDepartureCity ] = useState('');
@@ -10,37 +11,44 @@ function Forecast(props) {
   const [ departureForecast, setDepartureForecast ] = useState({});
   const [ arrivalForecast, setArrivalForecast ] = useState({});
 
-  const debouncedDeparture = useDebounce(departureCity);
-  const debouncedArrival = useDebounce(arrivalCity);
+  // const debouncedDeparture = useDebounce(departureCity);
+  // const debouncedArrival = useDebounce(arrivalCity);
 
-  useEffect(() => {
-    if (debouncedDeparture || debouncedArrival) {
-      if (debouncedDeparture && !departureForecast.city) getForecast(debouncedDeparture, setDepartureForecast);
-      if (debouncedArrival && !arrivalForecast.city) getForecast(debouncedArrival, setArrivalForecast);
-    } else {
-      setDepartureCity('');
-      setArrivalCity('');
-    };
-  }, [ debouncedDeparture, debouncedArrival ]);
+  // useEffect(() => {
+    // if (debouncedDeparture || debouncedArrival) {
+      // if (debouncedDeparture) getForecast(debouncedDeparture, setDepartureForecast);
+      // if (debouncedArrival) getForecast(debouncedArrival, setArrivalForecast);
+    // };
+  // }, [ debouncedDeparture, debouncedArrival ]);
 
   function handleFocus(e, citySetter, forecastSetter) {
     e.target.value = '';
-    citySetter('');
     forecastSetter({});
+    citySetter('');
+  };
+
+  function handleSubmit(e, forecastSetter) {
+    e.preventDefault();
+
+    let cityStr = `${e.target[0].value},`;
+    let stateStr = e.target[1].value.length > 1 ? `${e.target[1].value},` : '';
+    let countryStr = `${e.target[2].value}`;
+    const newDestination = cityStr + stateStr + countryStr;
+    getForecastTest(newDestination, forecastSetter);
   };
 
   return (
     <React.Fragment>
-      <div id='inputs-container'>
-        <ForecastInput 
+      <div id='forms-container'>
+        <ForecastForm 
           name='departure'
-          onChange={e => setDepartureCity(e.target.value)}
           onFocus={e => handleFocus(e, setDepartureCity, setDepartureForecast)}
+          onSubmit={e => handleSubmit(e, setDepartureForecast)}
         />
-        <ForecastInput 
+        <ForecastForm 
           name='arrival'
-          onChange={e => setArrivalCity(e.target.value)}
           onFocus={e => handleFocus(e, setArrivalCity, setArrivalForecast)}
+          onSubmit={e => handleSubmit(e, setArrivalForecast)}
         />
       </div>
       <div id='results-container'>

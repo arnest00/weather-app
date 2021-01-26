@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ForecastForm from './ForecastForm';
 import ForecastResult from './ForecastResult';
+import ForecastFeedback from './ForecastFeedback';
 // import useDebounce from './useDebounce';
 // import { getForecast } from '../utils/getForecast';
 import { getForecastTest } from '../utils/getForecastTest';
@@ -10,10 +11,12 @@ function Forecast(props) {
   const [ arrivalCity, setArrivalCity ] = useState('');
   const [ departureForecast, setDepartureForecast ] = useState({});
   const [ arrivalForecast, setArrivalForecast ] = useState({});
+  const [ feedback, setFeedback ] = useState('');
 
   useEffect(() => {
     if (Object.keys(departureForecast).length !== 0 && Object.keys(arrivalForecast).length !== 0) {
-      console.log('Both forecasts set!');
+      if (!('error' in departureForecast) && !('error' in arrivalForecast))
+        setFeedback('Yeah, probably.');
     };
   }, [ departureForecast, arrivalForecast ]);
 
@@ -29,6 +32,7 @@ function Forecast(props) {
   function handleSubmit(e, currentCity, forecastSetter) {
     e.preventDefault();
 
+    // getForecast(currentCity, forecastSetter);
     getForecastTest(currentCity, forecastSetter);
   };
 
@@ -46,14 +50,13 @@ function Forecast(props) {
           onChange={e => handleChange(e, setArrivalCity)}
         />
       </div>
+
       <div id='results-container'>
-        <ForecastResult 
-          forecast={departureForecast}
-        />
-        <ForecastResult 
-          forecast={arrivalForecast}
-        />
+        <ForecastResult forecast={departureForecast} />
+        <ForecastResult forecast={arrivalForecast} />
       </div>
+
+      <ForecastFeedback feedback={feedback} />
     </React.Fragment>
   );
 };

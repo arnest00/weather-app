@@ -8,5 +8,4 @@ export function getForecastTest(q, forecastSetter) {
     windSpeed: `${Math.floor((Math.random() * 3) + 1)}`
   };
   forecastSetter(newForecast);
-  console.log('Weather data fetched!');
 };

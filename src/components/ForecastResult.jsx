@@ -6,9 +6,11 @@ function ForecastResult({ forecast }) {
     classes = 'result';
   };
 
+  if (forecast.error) return <div className={classes}><span className='result-name'>{forecast.error}</span></div>;
+
   return (
     <div className={classes}>
-      <span className='result-desc'>{forecast.desc}</span>
+      <span className='result-name'>{forecast.city}</span>
       <span className='result-temp'>
         <span className='result-temp-num'>{forecast.temp}</span>
         <span className='result-temp-sym'>&deg;</span>
@@ -16,6 +18,8 @@ function ForecastResult({ forecast }) {
       </span>
 
       <span className='result-icon-container'>{forecast.icon ? <ion-icon name={forecast.icon}></ion-icon> : ''}</span>
+      <span className='result-desc'>{forecast.desc}</span>
+
       <span className='result-humidity'>Humidity: {forecast.humidity}%</span>
       <span className='result-wind-spd'>Wind: {forecast.windSpeed}{'mph'}</span>
     </div>

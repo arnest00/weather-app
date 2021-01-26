@@ -11,30 +11,25 @@ function Forecast(props) {
   const [ departureForecast, setDepartureForecast ] = useState({});
   const [ arrivalForecast, setArrivalForecast ] = useState({});
 
-  // const debouncedDeparture = useDebounce(departureCity);
-  // const debouncedArrival = useDebounce(arrivalCity);
+  useEffect(() => {
+    if (Object.keys(departureForecast).length !== 0 && Object.keys(arrivalForecast).length !== 0) {
+      console.log('Both forecasts set!');
+    };
+  }, [ departureForecast, arrivalForecast ]);
 
-  // useEffect(() => {
-    // if (debouncedDeparture || debouncedArrival) {
-      // if (debouncedDeparture) getForecast(debouncedDeparture, setDepartureForecast);
-      // if (debouncedArrival) getForecast(debouncedArrival, setArrivalForecast);
-    // };
-  // }, [ debouncedDeparture, debouncedArrival ]);
+  function handleChange(e, citySetter) {
+    const newDestination = [];
+    for (let i = 0; i < 3; i++) {
+      const str = e.target.parentNode.parentNode.parentNode[i].value;
+      if (str.length > 0) newDestination.push(str.trim());
+    };
+    citySetter(newDestination.join(','));
+  }
 
-  function handleFocus(e, citySetter, forecastSetter) {
-    e.target.value = '';
-    forecastSetter({});
-    citySetter('');
-  };
-
-  function handleSubmit(e, forecastSetter) {
+  function handleSubmit(e, currentCity, forecastSetter) {
     e.preventDefault();
 
-    let cityStr = `${e.target[0].value},`;
-    let stateStr = e.target[1].value.length > 1 ? `${e.target[1].value},` : '';
-    let countryStr = `${e.target[2].value}`;
-    const newDestination = cityStr + stateStr + countryStr;
-    getForecastTest(newDestination, forecastSetter);
+    getForecastTest(currentCity, forecastSetter);
   };
 
   return (
@@ -42,13 +37,13 @@ function Forecast(props) {
       <div id='forms-container'>
         <ForecastForm 
           name='departure'
-          onFocus={e => handleFocus(e, setDepartureCity, setDepartureForecast)}
-          onSubmit={e => handleSubmit(e, setDepartureForecast)}
+          onSubmit={e => handleSubmit(e, departureCity, setDepartureForecast)}
+          onChange={e => handleChange(e, setDepartureCity)}
         />
         <ForecastForm 
           name='arrival'
-          onFocus={e => handleFocus(e, setArrivalCity, setArrivalForecast)}
-          onSubmit={e => handleSubmit(e, setArrivalForecast)}
+          onSubmit={e => handleSubmit(e, arrivalCity, setArrivalForecast)}
+          onChange={e => handleChange(e, setArrivalCity)}
         />
       </div>
       <div id='results-container'>

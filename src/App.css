@@ -22,12 +22,13 @@ body {
 
 ::placeholder {
   color: #9099b7;
+  font-size: 0.9rem;
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 48%;
 }
 
 .input-container {
@@ -64,10 +65,6 @@ body {
   background-color: var(--highlight-color);
 }
 
-.display-none {
-  display: none;
-}
-
 .visibility-hidden {
   visibility: hidden;
   opacity: 0;
@@ -99,7 +96,7 @@ body {
 }
 
 .result {
-  width: 45%;
+  width: 48%;
   height: auto;
   padding: 1rem;
   background-color: var(--primary-color);

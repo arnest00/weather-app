@@ -2,8 +2,8 @@ import React from 'react';
 
 function ForecastResult({ forecast }) {
   let classes = 'result visibility-hidden';
-  if (forecast.city) {
-    classes = `result`;
+  if (Object.keys(forecast).length !== 0) {
+    classes = 'result';
   };
 
   return (

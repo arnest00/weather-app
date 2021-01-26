@@ -1,44 +1,24 @@
 import React from 'react';
+import ForecastInput from './ForecastInput';
 
-function ForecastForm({ name, onSubmit, onFocus }) {
-  const uppercaseName = name.charAt(0).toUpperCase() + name.slice(1);
-
+function ForecastForm({ name, onSubmit, onChange }) {
   return (
-    <form className='form-container' onSubmit={onSubmit}>
-      <div className='city-select'>
-        <div className='input-container' >
-          <ion-icon name='airplane-sharp'></ion-icon>
-          <input 
-            className='city-input' 
-            type='text' 
-            name={ `${name}City` } 
-            placeholder={ `${uppercaseName} city` }
-            onFocus={onFocus}
-          />
-        </div>
-      </div>
-      <div className='state-select'>
-        <div className='input-container' >
-          <ion-icon name='trail-sign-sharp'></ion-icon>
-          <input 
-            className='state-input' 
-            type='text' 
-            name={ `${name}State` } 
-            placeholder={ `${uppercaseName} state (optional)` } 
-          />
-        </div>
-      </div>
-      <div className='country-select'>
-        <div className='input-container' >
-          <ion-icon name='earth-sharp'></ion-icon>
-          <input 
-            className='country-input' 
-            type='text' 
-            name={ `${name}Country` } 
-            placeholder={ `${uppercaseName} country` } 
-          />
-        </div>
-      </div>
+    <form className='form-container' onSubmit={onSubmit} onChange={onChange}>
+      <ForecastInput 
+        option='city'
+        name={name}
+        isOptional={false}
+      />
+      <ForecastInput 
+        option='state'
+        name={name}
+        isOptional={true}
+      />
+      <ForecastInput 
+        option='country'
+        name={name}
+        isOptional={true}
+      />
       <button className='form-button'>Select</button>
     </form>
   );

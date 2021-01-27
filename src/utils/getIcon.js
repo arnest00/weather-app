@@ -11,6 +11,7 @@ export function getIcon(str) {
       return 'sunny-sharp';
     case 'Clouds':
       return 'cloudy-sharp';
+      
     default:
       return 'warning-sharp';
   };

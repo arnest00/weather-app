@@ -8,7 +8,8 @@ export async function getForecast(q, forecastSetter) {
 
     const data = await response.json();
     const newForecast = { 
-      city: `${data.name}, ${data.sys.country}`,
+      city: data.name,
+      country: data.sys.country,
       desc: data.weather[0].description,
       temp: parseInt(data.main.temp),
       icon: getIcon(data.weather[0].main),

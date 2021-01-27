@@ -10,7 +10,7 @@ function ForecastResult({ forecast }) {
 
   return (
     <div className={classes}>
-      <span className='result-name'>{forecast.city}</span>
+      <span className='result-name'>{forecast.country ? `${forecast.city}, ${forecast.country}` : forecast.city}</span>
       <span className='result-temp'>
         <span className='result-temp-num'>{forecast.temp}</span>
         <span className='result-temp-sym'>&deg;</span>

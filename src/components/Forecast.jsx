@@ -3,8 +3,9 @@ import ForecastForm from './ForecastForm';
 import ForecastResult from './ForecastResult';
 import ForecastFeedback from './ForecastFeedback';
 // import useDebounce from './useDebounce';
-// import { getForecast } from '../utils/getForecast';
-import { getForecastTest } from '../utils/getForecastTest';
+import { getForecast } from '../utils/getForecast';
+// import { getForecastTest } from '../utils/getForecastTest';
+import { getFeedback } from '../utils/getFeedback';
 
 function Forecast(props) {
   const [ departureCity, setDepartureCity ] = useState('');
@@ -15,8 +16,10 @@ function Forecast(props) {
 
   useEffect(() => {
     if (Object.keys(departureForecast).length !== 0 && Object.keys(arrivalForecast).length !== 0) {
-      if (!('error' in departureForecast) && !('error' in arrivalForecast))
-        setFeedback('Yeah, probably.');
+      if (!('error' in departureForecast) && !('error' in arrivalForecast)) {
+        const feedback = getFeedback(departureForecast, arrivalForecast);
+        setFeedback(feedback);
+      };
     };
   }, [ departureForecast, arrivalForecast ]);
 
@@ -32,8 +35,8 @@ function Forecast(props) {
   function handleSubmit(e, currentCity, forecastSetter) {
     e.preventDefault();
 
-    // getForecast(currentCity, forecastSetter);
-    getForecastTest(currentCity, forecastSetter);
+    getForecast(currentCity, forecastSetter);
+    // getForecastTest(currentCity, forecastSetter);
   };
 
   return (

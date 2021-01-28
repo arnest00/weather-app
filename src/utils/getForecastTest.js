@@ -1,4 +1,4 @@
-export function getForecastTest(q, forecastSetter) {
+export function getForecastTest(q, unit, forecastSetter) {
   let qStr = q.split(' ');
   for (let e of qStr) {
     qStr[qStr.indexOf(e)] = e.charAt(0).toUpperCase() + e.slice(1);
@@ -7,6 +7,7 @@ export function getForecastTest(q, forecastSetter) {
 
   const newForecast = { 
     city: qStr,
+    unit: unit,
     desc: 'Test description',
     temp: parseInt(Math.floor((Math.random() * 20) + 60)),
     icon: 'sunny-sharp',

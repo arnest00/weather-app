@@ -1,8 +1,8 @@
 import { getIcon } from './getIcon';
 
-export async function getForecast(q, forecastSetter) {
+export async function getForecast(q, unit, forecastSetter) {
   try {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=${process.env.REACT_APP_API_KEY}&units=imperial&q=${q}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=${process.env.REACT_APP_API_KEY}&units=${unit}&q=${q}`);
     
     if (response.status === 404) return forecastSetter({ error: 'Sorry, we couldn\'t find that city.' })
 

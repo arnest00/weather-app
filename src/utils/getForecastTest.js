@@ -6,7 +6,7 @@ export function getForecastTest(q, unit, forecastSetter) {
   qStr = qStr.join(' ');
 
   const newForecast = { 
-    city: qStr,
+    city: qStr.split(',').shift(),
     unit: unit,
     desc: 'Test description',
     temp: parseInt(Math.floor((Math.random() * 20) + 60)),

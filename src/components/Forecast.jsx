@@ -59,6 +59,19 @@ function Forecast(props) {
 
   return (
     <React.Fragment>
+      <div id='forms-container'>
+        <ForecastForm 
+          name='departure'
+          onSubmit={e => handleSubmit(e, departureCity, unit, setDepartureForecast)}
+          onChange={e => handleChange(e, setDepartureCity)}
+        />
+        <ForecastForm 
+          name='arrival'
+          onSubmit={e => handleSubmit(e, arrivalCity, unit, setArrivalForecast)}
+          onChange={e => handleChange(e, setArrivalCity)}
+        />
+      </div>
+
       <div id="options-container">
         <ForecastButton 
           content='C' 
@@ -76,19 +89,6 @@ function Forecast(props) {
           content={<ion-icon name='refresh-sharp'></ion-icon>}
           className='clear-button'
           onClick={handleClear}
-        />
-      </div>
-
-      <div id='forms-container'>
-        <ForecastForm 
-          name='departure'
-          onSubmit={e => handleSubmit(e, departureCity, unit, setDepartureForecast)}
-          onChange={e => handleChange(e, setDepartureCity)}
-        />
-        <ForecastForm 
-          name='arrival'
-          onSubmit={e => handleSubmit(e, arrivalCity, unit, setArrivalForecast)}
-          onChange={e => handleChange(e, setArrivalCity)}
         />
       </div>
 

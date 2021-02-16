@@ -9,7 +9,7 @@ export function getForecastTest(q, unit, forecastSetter) {
     city: qStr.split(',').shift(),
     unit: unit,
     desc: 'Test description',
-    temp: parseInt(Math.floor((Math.random() * 20) + 60)),
+    temp: parseInt(Math.floor((Math.random() * 60) + 30)),
     icon: 'sunny-sharp',
     humidity: `${Math.floor((Math.random() * 20) + 40)}`,
     windSpeed: `${Math.floor((Math.random() * 3) + 1)}`

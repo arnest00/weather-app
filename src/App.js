@@ -5,7 +5,6 @@ import './App.css';
 function App() {
   return (
     <div id='app-container'>
-      <h1 id='header'>Should You Bring a Jacket?</h1>
       <Forecast />
     </div>
   );

@@ -3,7 +3,7 @@ import React from 'react';
 function ForecastInput({ option, name, isOptional }) {
   function handleFocus({ target }) {
     target.previousSibling.classList.remove('visibility-hidden');
-    target.value = '';
+    target.select();
   };
 
   function handleBlur({ target }) {

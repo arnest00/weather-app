@@ -3,7 +3,6 @@ import ForecastForm from './ForecastForm';
 import ForecastResult from './ForecastResult';
 import ForecastFeedback from './ForecastFeedback';
 import ForecastButton from './ForecastButton';
-// import useDebounce from './useDebounce';
 import { getForecast } from '../utils/getForecast';
 // import { getForecastTest } from '../utils/getForecastTest';
 import { getFeedback } from '../utils/getFeedback';
@@ -26,11 +25,14 @@ function Forecast(props) {
   }, [ departureForecast, arrivalForecast ]);
 
   function handleOption(unit) {
-    setDepartureForecast({});
-    setArrivalForecast({});
-    setFeedback('');
-
     setUnit(unit);
+
+    if (departureCity)
+      getForecast(departureCity, unit, setDepartureForecast);
+      // getForecastTest(departureCity, unit, setDepartureForecast);
+    if (arrivalCity)
+      getForecast(arrivalCity, unit, setArrivalForecast);
+      // getForecastTest(arrivalCity, unit, setArrivalForecast);
   };
 
   function handleClear() {
@@ -39,38 +41,29 @@ function Forecast(props) {
     setDepartureForecast({});
     setArrivalForecast({});
     setFeedback('');
+
+    document.querySelectorAll('.form-container').forEach(form => form.reset());
   };
 
-  function handleChange(e, citySetter) {
-    const newDestination = [];
-    for (let i = 0; i < 3; i++) {
-      const str = e.target.parentNode.parentNode.parentNode[i].value;
-      if (str.length > 0) newDestination.push(str.trim());
-    };
-    citySetter(newDestination.join(','));
-  };
-
-  function handleSubmit(e, currentCity, unit, forecastSetter) {
+  function handleSubmit(e, unit, citySetter, forecastSetter) {
     e.preventDefault();
 
-    getForecast(currentCity, unit, forecastSetter);
-    // getForecastTest(currentCity, unit, forecastSetter);
+    let newDestination = [];
+    for (let i = 0; i < 3; i++) {
+      const str = e.target[i].value;
+      if (str.length > 0) newDestination.push(str.trim());
+    };
+    if (e.target[1].value.length > 0) newDestination.push('us');
+    newDestination = newDestination.join(',');
+
+    citySetter(newDestination);
+    getForecast(newDestination, unit, forecastSetter);
+    // getForecastTest(newDestination, unit, forecastSetter);
   };
 
   return (
     <React.Fragment>
-      <div id='forms-container'>
-        <ForecastForm 
-          name='departure'
-          onSubmit={e => handleSubmit(e, departureCity, unit, setDepartureForecast)}
-          onChange={e => handleChange(e, setDepartureCity)}
-        />
-        <ForecastForm 
-          name='arrival'
-          onSubmit={e => handleSubmit(e, arrivalCity, unit, setArrivalForecast)}
-          onChange={e => handleChange(e, setArrivalCity)}
-        />
-      </div>
+      <h1 id='header'>Should You Bring a Jacket?</h1>
 
       <div id="options-container">
         <ForecastButton 
@@ -89,6 +82,17 @@ function Forecast(props) {
           content={<ion-icon name='refresh-sharp'></ion-icon>}
           className='clear-button'
           onClick={handleClear}
+        />
+      </div>
+
+      <div id='forms-container'>
+        <ForecastForm 
+          name='departure'
+          onSubmit={e => handleSubmit(e, unit, setDepartureCity, setDepartureForecast)}
+        />
+        <ForecastForm 
+          name='arrival'
+          onSubmit={e => handleSubmit(e, unit, setArrivalCity, setArrivalForecast)}
         />
       </div>
 

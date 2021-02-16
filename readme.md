@@ -1,6 +1,6 @@
 # Shoud You Bring a Jacket?
 
-This is a This is a weather application that allows users to check out the current day's weather forecast for their departure city and their arrival city. The app compares the destination and arrival forecasts and suggests whether user should bring a jacket or not.
+This is a weather application that allows users to check out the current day's weather forecast for their departure city and their arrival city. The app compares the destination and arrival forecasts and suggests whether user should bring a jacket or not.
 
 ## Live Demo
 

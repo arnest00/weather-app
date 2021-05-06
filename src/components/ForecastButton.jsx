@@ -4,7 +4,7 @@ function ForecastButton({ content, className, onClick, selected = '' }) {
   let classes = `button ${className} ${selected}`;
 
   return (
-      <button className={classes} onClick={onClick}>{content}</button>
+    <button className={classes} onClick={onClick}>{content}</button>
   );
 };
 

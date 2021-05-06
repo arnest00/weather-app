@@ -4,10 +4,9 @@ import ForecastResult from './ForecastResult';
 import ForecastFeedback from './ForecastFeedback';
 import ForecastButton from './ForecastButton';
 import { getForecast } from '../utils/getForecast';
-// import { getForecastTest } from '../utils/getForecastTest';
 import { getFeedback } from '../utils/getFeedback';
 
-function Forecast(props) {
+function Forecast() {
   const [ departureCity, setDepartureCity ] = useState('');
   const [ arrivalCity, setArrivalCity ] = useState('');
   const [ departureForecast, setDepartureForecast ] = useState({});
@@ -29,10 +28,8 @@ function Forecast(props) {
 
     if (departureCity)
       getForecast(departureCity, unit, setDepartureForecast);
-      // getForecastTest(departureCity, unit, setDepartureForecast);
     if (arrivalCity)
       getForecast(arrivalCity, unit, setArrivalForecast);
-      // getForecastTest(arrivalCity, unit, setArrivalForecast);
   };
 
   function handleClear() {
@@ -58,7 +55,6 @@ function Forecast(props) {
 
     citySetter(newDestination);
     getForecast(newDestination, unit, forecastSetter);
-    // getForecastTest(newDestination, unit, forecastSetter);
   };
 
   return (
